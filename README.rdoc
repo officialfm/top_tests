@@ -2,11 +2,40 @@
 Top tests displays your 10 slowest tests after execution. The goal is to help you
 keeping your tests fast.
 
-== How to setup top tests?
-First of all top tests works only with ActiveSupport::TestCase. Then require top
-tests and just include into your test class:
+Moreover top tests can break your build if any test is taking longer than the specified max duration.
+
+== How to use it?
+First of all top tests works only with ActiveSupport::TestCase. Add top_tests to your Gemfile.
+
+    gem 'top_tests'
+
+Then require top tests and just include it into your test class:
 
     class ActiveSupport::TestCase
       include TopTests
+
+      # Break your build if any test's duration is longer than ...
+      self.max_duration = 0.5 # Optional, nil by default (in seconds)
     end
+
+Sample output:
+
+  Top tests:
+      0.429 ApplicationControllerTest#test_notify_error
+      0.322 HoneyBadgersControllerTest#test_show
+      0.200 BearsControllerTest#test_destroy_collection
+      0.134 SuricatsControllerTest#test_can_not_update
+      0.124 SuricatsControllerTest#test_create
+      0.105 SuricatsControllerTest#test_update
+      0.096 HoneyBadgersControllerTest#test_create
+      0.093 HoneyBadgersControllerTest#test_update
+      0.091 SuricatsControllerTest#test_destroy
+      0.090 HoneyBadgersControllerTest#test_show
+
+Sample output when few tests are too slow:
+
+    TEST?FAIL! 3 test(s) are taking longer than 0.2 seconds:
+        0.410 HoneyBadgerTest#test_fighting_a_cobra
+        0.228 SuricatTest#test_caught_by_an_eagle
+        0.203 HoneyBadgerTest#test_eating_larvae
 
