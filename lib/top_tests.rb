@@ -48,7 +48,7 @@ module TopTests
     end
 
     def slow_tests
-      max_duration ? top_tests.find_all { |t| top_tests.first.last > max_duration } : []
+      max_duration ? top_tests.find_all { |t| t.last > max_duration } : []
     end
 
     def format_tests(tests)
@@ -64,7 +64,7 @@ module TopTests
     def check_tests_duration
       if !slow_tests.empty?
         puts "\nTEST?FAIL! #{slow_tests.count} test(s) are taking longer than #{max_duration} seconds:"
-        puts format_tests(top_tests)
+        puts format_tests(slow_tests)
         puts
         exit 1
       end
