@@ -1,0 +1,12 @@
+== What is it?
+Top tests displays your 10 slowest tests after execution. The goal is to help you
+keeping your tests fast.
+
+== How to setup top tests?
+First of all top tests works only with ActiveSupport::TestCase. Then require top
+tests and just include into your test class:
+
+    class ActiveSupport::TestCase
+      include TopTests
+    end
+
