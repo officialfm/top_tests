@@ -5,13 +5,13 @@ keeping your tests fast.
 Moreover top tests can break your build if any test is taking longer than the specified max duration.
 
 == How to use it?
-First of all top tests works only with ActiveSupport::TestCase. Add top_tests to your Gemfile.
+First of all top tests works only with MiniTest (>= 2.11.2). Add top_tests to your Gemfile.
 
     gem 'top_tests'
 
 Then require top tests and just include it into your test class:
 
-    class ActiveSupport::TestCase
+    class SampleTest < MiniTest::Unit::TestCase
       include TopTests
 
       # Break your build if any test's duration is longer than ...
