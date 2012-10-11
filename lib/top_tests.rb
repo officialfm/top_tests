@@ -7,21 +7,19 @@ module TopTests
   #####################
 
   def self.included(klass)
-    klass.setup :start_timer
-    klass.teardown :stop_timer
     klass.extend(ClassMethods)
-    at_exit { at_exit { klass.at_exit_callback } }
+    MiniTest::Unit.after_tests { klass.after_all_tests }
   end
 
   ########################
   ### Instance methods ###
   ########################
 
-  def start_timer
+  def before_setup
     @timer_started_at = Time.now
   end
 
-  def stop_timer
+  def after_teardown
     if @timer_started_at  # Unset when a setup hook fails before top test.
       name = self.class.to_s + '#' + @__name__
       self.class.tests_durations << [name, Time.now - @timer_started_at]
@@ -42,7 +40,7 @@ module TopTests
     end
 
     def max_duration
-      @@max_duration
+      @@max_duration ||= nil
     end
 
     def top_tests
@@ -72,7 +70,7 @@ module TopTests
       end
     end
 
-    def at_exit_callback
+    def after_all_tests
       check_tests_duration
       print_top_tests
     end
