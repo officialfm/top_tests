@@ -56,14 +56,18 @@ module TopTests
     end
 
     def print_top_tests
-      puts "\nTop tests:"
+      puts "\nTop 10 slowest tests:"
       puts format_tests(top_tests.shift(10))
       puts
     end
 
     def check_tests_duration
       if !slow_tests.empty?
-        puts "\nTEST?FAIL! #{slow_tests.count} test(s) are taking longer than #{max_duration} seconds:"
+        if slow_tests.size == 1
+          puts "\nTEST?FAIL! 1 test is taking longer than #{max_duration} seconds:"
+        else
+          puts "\nTEST?FAIL! #{slow_tests.count} tests are taking longer than #{max_duration} seconds:"
+        end
         puts format_tests(slow_tests)
         puts
         exit 1

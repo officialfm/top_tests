@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Alexis Bernard']
   s.email       = ['alexis@official.fm']
   s.homepage    = 'https://github.com/officialfm/top_tests'
-  s.summary     = 'Top tests displays your 10 slowest tests after execution'
-  s.description = 'Top tests displays your 10 slowest tests after execution'
+  s.summary     = 'Top tests lists the 10 slowest tests after execution'
+  s.description = 'Top tests lists the 10 slowest tests after execution'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

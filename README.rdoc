@@ -20,7 +20,7 @@ Then require top tests and just include it into your test class:
 
 Sample output:
 
-  Top tests:
+  Top 10 slowest tests:
       0.429 ApplicationControllerTest#test_notify_error
       0.322 HoneyBadgersControllerTest#test_show
       0.200 BearsControllerTest#test_destroy_collection
